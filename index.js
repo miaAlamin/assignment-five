@@ -48,7 +48,8 @@ tailwind.config = {
 
   });
   
-
+  let currentDate = new Date();
+  let formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
   allButtonId("noakhali-btn").addEventListener('click', function(){
  
     const noakhalibalance = allMoneyBDTId('noakhali-balance');
@@ -69,7 +70,35 @@ tailwind.config = {
     const courrentAmountnoakhali = noakhali_donate + noakhaliinput;
     top_bdt_amount.innerText = courrentAmount;
     noakhalibalance.innerText = courrentAmountnoakhali;
+
+
+    const creatediv = document.createElement('div')
+    creatediv.innerHTML = `
     
+     <div class="mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
+      <p>${noakhaliinput}Taka is Donated for famin-2024 at Feni, Bangladesh</p>
+      <p>${formattedDate}</p>
+      </div>
+    `;
+     
+
+    allSectionId('notification-section').appendChild(creatediv);
   })
 
+
+  allButtonId('History-btn').addEventListener('click', function(){
+    allSectionId('card-box-area').classList.add('hidden')
+    allButtonId('History-btn').classList.add('bg-[#B4F461]')
+    allButtonId('Donation-btn').classList.remove('bg-[#B4F461]')
+
+    allButtonId('History-btn').classList.remove('outline-none')
+  })
+
+  allButtonId('Donation-btn').addEventListener('click', function(){
+    allSectionId('card-box-area').classList.remove('hidden')
+    allButtonId('History-btn').classList.remove('bg-[#B4F461]')
+    allButtonId('Donation-btn').classList.add('bg-[#B4F461]')
+
+   
+  })
   
