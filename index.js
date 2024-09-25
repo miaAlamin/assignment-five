@@ -83,7 +83,7 @@ tailwind.config = {
     const creatediv = document.createElement('div')
     creatediv.innerHTML = `
     
-     <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
+     <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-auto">
       <p>${noakhaliinput} Taka is Donated for famin-2024 at Noakhali, Bangladesh</p>
       <p>${formattedDate}</p>
       </div>
