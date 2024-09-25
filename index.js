@@ -55,15 +55,22 @@ tailwind.config = {
     const noakhalibalance = allMoneyBDTId('noakhali-balance');
     let noakhaliinput = allInputValueId('noakhali-input');
     let top_bdt_amount = allMoneyBDTId('top-bdt-amount');
-
+  
     let top_bdt_amountvalue = parseInt(top_bdt_amount.innerText);
     let noakhali_donate = parseInt(noakhalibalance.innerText);
-    
-    if( isNaN(noakhaliinput)){
-      alert('Invalid Input')
-    }else{
-      alert('congratulation your donation successfull')
+    if(top_bdt_amount.innerText <= 0 || top_bdt_amount.innerText < noakhaliinput){
+      alert('insuficent Balance')
+      return
     }
+    if( isNaN(noakhaliinput) || noakhaliinput <= 0){
+      alert('Invalid Input')
+      return;
+    }else {
+      alert('congratulation your donation successfull')
+    };
+
+  
+    console.log( typeof top_bdt_amount.innerText)
     
 
     const courrentAmount = top_bdt_amountvalue - noakhaliinput;
@@ -75,14 +82,16 @@ tailwind.config = {
     const creatediv = document.createElement('div')
     creatediv.innerHTML = `
     
-     <div class="mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
-      <p>${noakhaliinput}Taka is Donated for famin-2024 at Feni, Bangladesh</p>
+     <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
+      <p>${noakhaliinput} Taka is Donated for famin-2024 at Feni, Bangladesh</p>
       <p>${formattedDate}</p>
       </div>
     `;
      
 
-    allSectionId('notification-section').appendChild(creatediv);
+    allSectionId('notification').appendChild(creatediv);
+
+    
   })
 
 
@@ -91,14 +100,15 @@ tailwind.config = {
     allButtonId('History-btn').classList.add('bg-[#B4F461]')
     allButtonId('Donation-btn').classList.remove('bg-[#B4F461]')
 
-    allButtonId('History-btn').classList.remove('outline-none')
+    // allButtonId('History-btn').classList.remove('outline-none')
+    allSectionId('notification').classList.remove('hidden');
   })
 
   allButtonId('Donation-btn').addEventListener('click', function(){
     allSectionId('card-box-area').classList.remove('hidden')
     allButtonId('History-btn').classList.remove('bg-[#B4F461]')
     allButtonId('Donation-btn').classList.add('bg-[#B4F461]')
-
+    allSectionId('notification').classList.add('hidden');
    
   })
   
