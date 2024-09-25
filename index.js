@@ -49,7 +49,8 @@ tailwind.config = {
   });
   
   let currentDate = new Date();
-  let formattedDate = `${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+  let formattedDate = `${currentDate.toLocaleTimeString()} ${currentDate.getDate()}/${currentDate.getMonth() + 1}/${currentDate.getFullYear()}`;
+
   allButtonId("noakhali-btn").addEventListener('click', function(){
  
     const noakhalibalance = allMoneyBDTId('noakhali-balance');
@@ -83,7 +84,94 @@ tailwind.config = {
     creatediv.innerHTML = `
     
      <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
-      <p>${noakhaliinput} Taka is Donated for famin-2024 at Feni, Bangladesh</p>
+      <p>${noakhaliinput} Taka is Donated for famin-2024 at Noakhali, Bangladesh</p>
+      <p>${formattedDate}</p>
+      </div>
+    `;
+     
+
+    allSectionId('notification').appendChild(creatediv);
+
+    
+  })
+
+  allButtonId("feni-btn").addEventListener('click', function(){
+ 
+    const fenibalance = allMoneyBDTId('feni-balance');
+    let feniinput = allInputValueId('feni-input');
+    let top_bdt_amount = allMoneyBDTId('top-bdt-amount');
+  
+    let top_bdt_amountvalue = parseInt(top_bdt_amount.innerText);
+    let noakhali_donate = parseInt(fenibalance.innerText);
+    if(top_bdt_amount.innerText <= 0 || top_bdt_amount.innerText < feniinput){
+      alert('insuficent Balance')
+      return
+    }
+    if( isNaN(feniinput) || feniinput <= 0){
+      alert('Invalid Input')
+      return;
+    }else {
+      alert('congratulation your donation successfull')
+    };
+
+  
+    console.log( typeof top_bdt_amount.innerText)
+    
+
+    const courrentAmount = top_bdt_amountvalue - feniinput;
+    const courrentAmountnoakhali = noakhali_donate + feniinput;
+    top_bdt_amount.innerText = courrentAmount;
+    fenibalance.innerText = courrentAmountnoakhali;
+
+
+    const creatediv = document.createElement('div')
+    creatediv.innerHTML = `
+    
+     <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
+      <p>${feniinput} Taka is Donated for famin-2024 at Feni, Bangladesh</p>
+      <p>${formattedDate}</p>
+      </div>
+    `;
+     
+
+    allSectionId('notification').appendChild(creatediv);
+
+    
+  })
+  allButtonId("quota-btn").addEventListener('click', function(){
+ 
+    const quotabalance = allMoneyBDTId('quota-balance');
+    let quotainput = allInputValueId('quota-input');
+    let top_bdt_amount = allMoneyBDTId('top-bdt-amount');
+  
+    let top_bdt_amountvalue = parseInt(top_bdt_amount.innerText);
+    let noakhali_donate = parseInt(quotabalance.innerText);
+    if(top_bdt_amount.innerText <= 0 || top_bdt_amount.innerText < quotainput){
+      alert('insuficent Balance')
+      return
+    }
+    if( isNaN(quotainput) || quotainput <= 0){
+      alert('Invalid Input')
+      return;
+    }else {
+      alert('congratulation your donation successfull')
+    };
+
+  
+ 
+    
+
+    const courrentAmount = top_bdt_amountvalue - quotainput;
+    const courrentAmountnoakhali = noakhali_donate + quotainput;
+    top_bdt_amount.innerText = courrentAmount;
+    quotabalance.innerText = courrentAmountnoakhali;
+
+
+    const creatediv = document.createElement('div')
+    creatediv.innerHTML = `
+    
+     <div  class="   mt-7 px-4 border-2 border-gray-300 rounded-md w-3/4 mx-auto py-3 h-16">
+      <p>${quotainput} Taka is Donated for famin-2024 at Quota, Bangladesh</p>
       <p>${formattedDate}</p>
       </div>
     `;
